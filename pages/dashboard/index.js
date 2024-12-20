@@ -11,6 +11,12 @@ const Index = () => {
     const [open, setOpen] = useState(false)
     const router = useRouter()
 
+    useEffect(() => {
+        if (typeof window !== 'undefined' && !localStorage.getItem('authorization')) {
+            router.push('/') 
+        }
+    }, [router])
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setExistingMessages([...existingMessages, {
